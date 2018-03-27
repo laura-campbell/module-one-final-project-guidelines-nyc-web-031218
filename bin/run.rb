@@ -11,36 +11,22 @@ def run
   welcome
   name = get_username
   profile = get_profile
-  profile2 = name.add_profile(profile)
-
+  profile_instance = name.add_profile(profile)
   captions = get_profiles_from_input(profile)
-#  binding.pry
-    if captions == nil
-      puts "This user is private. Sorry!"
+  if captions == nil
+    puts "This user is private. Sorry!"
+  else
+    sentiment = get_sentiment(captions).to_s
+    if sentiment == nil
+      puts "This user doesn't like captions. Sorry!"
     else
-      sentiment = get_sentiment(captions).to_s
-
-        if sentiment == nil
-          puts "This user doesn't like captions. Sorry!"
-        else
-          #binding.pry
-          profile2.sentiment_id(sentiment)
-
-          profile2.save
-
-        #   sentiment == "negative"
-        #   profile.sentiment_id = negative.id
-        #
-        #   profile.save
-        # elsif sentiment == "positive"
-        #   profile.sentiment_id = positive.id
-        #   profile.save
-        # elsif sentiment == "neutral"
-        #   profile.sentiment_id = neutral.id
-        #   profile.save
-        end
+      profile_instance.sentiment_id(sentiment)
+      profile_instance.save
     end
+    puts "#{profile}'s sentiment is: #{sentiment.capitalize}"
   end
+  option = help
+end
 
 
 run
