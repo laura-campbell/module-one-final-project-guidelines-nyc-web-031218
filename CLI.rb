@@ -6,11 +6,12 @@ def welcome
 end
 
 def get_username
-  puts "Please enter your first and last name:"
-  gets.chomp
+  print "Please enter your first and last name: "
+  response = gets.chomp
+  User.create(username:response)
 end
 
 def get_profile
-  puts "Enter the username of a public profile you'd like to analyze the sentiment of:"
+  print "Enter the username of a public profile you'd like to analyze the sentiment of: "
   gets.chomp
 end

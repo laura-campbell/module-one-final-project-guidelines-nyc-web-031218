@@ -6,4 +6,6 @@ class Sentiment < ActiveRecord::Base
     r = self.all.map { |x| x[:sentiment] }
     r.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
   end
+
+
 end
