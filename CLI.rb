@@ -2,19 +2,19 @@
 
 
 def welcome
-  puts "Welcome to the Instagram Sentiment Assessor!"
+  puts "*** Welcome to the Instagram Sentiment Assessor! ***".yellow
 end
 
 def get_username
   print "
-  Please enter your first name: "
+  Please enter your first name: ".green
   response = gets.chomp
   User.create(username:response)
 end
 
 def get_profile
   print "
-  Enter the username of a public profile you'd like to analyze the sentiment of: "
+  Enter the username of a public profile you'd like to analyze the sentiment of: ".green
   gets.chomp
 end
 
@@ -33,7 +33,8 @@ def helper
 
   QUIT:
       4. Clear history
-      5. Exit the application"
+      5. Exit the application
+  ------------------------------------------------------------------------"
 
   # ANALYZE ALL RESULTS:
   #     4. See the number of profiles all users have looked at
@@ -41,6 +42,6 @@ def helper
   #     6. See the breakdown of sentiments of all the profiles
 
   print "
-  Please enter the number of your choice from the options above (1 - 5): "
+  Please enter the number of your choice from the options above (1 - 5): ".green
   gets.chomp
 end
