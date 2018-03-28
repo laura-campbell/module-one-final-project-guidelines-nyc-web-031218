@@ -19,7 +19,7 @@ def run
         elsif option == '2'
           name.results
         elsif option == '3'
-          binding.pry
+          #binding.pry
           name.sentiments_counts
         elsif option == '4'
           User.num_of_profiles

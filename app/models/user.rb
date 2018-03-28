@@ -18,14 +18,14 @@ class User < ActiveRecord::Base
     self.all.map do |x|
       count_of_profiles[x.username] = x.profiles.length
     end
-    count_of_profiles
+    puts count_of_profiles
   end
 
 
   #Instance method which returns the count of positive, negative, and neutral profiles the user searched up
   #Analysis: Option 5 - See the breakdown by positive/negative/netural of the people you creeped.
   def sentiments_counts
-    #This will the sentiments related to each instance
+    #This will get the sentiments related to each instance
     x = self.sentiments
 
     #These two lines are instantiated for the while loop below
@@ -41,26 +41,28 @@ class User < ActiveRecord::Base
     #This creates a hash and counts each of the words' occurrences in the array
     #The output will look something like:
     #   {"Positive" => 2, "Neutral" => 1, "Negative" => 3}
-    sentiments_count.each_with_object(Hash.new(0)) { |word,counts| puts counts[word] += 1 }
+    hash = sentiments_count.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
+    hash.map {|key, value| puts "#{key} - #{value}"}
   end
 
 
-    #OPTION 2. See the results of the profiles you've looked
-    def results
-      x = Profile.all.select { |profile| profile.user_id == self.id }
-      k = x.map {|profile| profile[:name]}
-      v = x.map do |profile|
-        if profile[:sentiment_id] == 1
-          "Negative"
-        elsif profile[:sentiment_id] == 2
-          "Positive"
-        elsif profile[:sentiment_id] == 3
-          "Neutral"
-        end
+  #OPTION 2. See the results of the profiles you've looked
+  def results
+    x = Profile.all.select { |profile| profile.user_id == self.id }
+    k = x.map {|profile| profile[:name]}
+    v = x.map do |profile|
+      if profile[:sentiment_id] == 1
+        "Negative"
+      elsif profile[:sentiment_id] == 2
+        "Positive"
+      elsif profile[:sentiment_id] == 3
+        "Neutral"
       end
-      hash = [k, v].transpose.to_h
-      hash.map {|key, value| puts "#{key} - #{value}"}
     end
+    hash = [k, v].transpose.to_h
+    hash.map {|key, value| puts "#{key} - #{value}"}
+    hash 
+  end
 
 
 end
@@ -74,15 +76,17 @@ end
 #   ANALYZE THE DATA:
 #
 #     YOUR RESULTS
-#     2. See the results of the profiles you've looked >> User#results
+#     2. See the results of the profiles you've looked >> User#results -- good
 #     3. See the breakdown of sentiments of the profiles you've looked at >> User#sentiment_counts
 #
 #     ALL RESULTS
 #     4. See the number of profiles all users have looked at >> User.num_of_profiles
-#     5. See the results of all the profiles looked at by all users >> Profile.results
+#     5. See the results of all the profiles looked at by all users >> Profile.results -- good
 #     6. See the breakdown of sentiments of all the profiles >> Sentiment.count_of_all
 #
 #   QUIT
 #     7. Exit the application
 #
 # Please enter the number of your choice above.
+patricia = User.create(username:"Patricia")
+patricia.sentiments_counts
