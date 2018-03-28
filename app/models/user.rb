@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
         end
       end
       hash = [k, v].transpose.to_h
-      hash.map {|key, value| puts "#{key} - #{value}"}
     end
 
 

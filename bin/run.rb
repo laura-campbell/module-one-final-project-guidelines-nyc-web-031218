@@ -13,22 +13,17 @@ def run
   name = get_username
   run2(name)
   option = helper
-    while option != '8'
+    while option != '5'
         if option == '1'
           run2(name)
         elsif option == '2'
-          name.results
+          name.results.map {|key, value| puts "#{key} - #{value}"}
         elsif option == '3'
-          binding.pry
-          name.sentiments_counts
+          hash = name.results.values.each_with_object(Hash.new(0)) { |result,counts| counts[result] += 1 }
+          puts hash
         elsif option == '4'
-          User.num_of_profiles
-        elsif option == '5'
-          Profile.results
-        elsif option == '6'
-          Sentiment.count_of_all
-        elsif option == '7'
-          User.profiles.delete_all
+          Profile.all.delete_all
+          puts "History cleared!"
         else
           puts "That's not a valid command. Please try again."
         end
