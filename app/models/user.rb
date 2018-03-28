@@ -41,11 +41,11 @@ class User < ActiveRecord::Base
     #This creates a hash and counts each of the words' occurrences in the array
     #The output will look something like:
     #   {"Positive" => 2, "Neutral" => 1, "Negative" => 3}
-    sentiments_count.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
+    sentiments_count.each_with_object(Hash.new(0)) { |word,counts| puts counts[word] += 1 }
   end
 
 
-    #OPTION 2. See the results of the profiles you've looked 
+    #OPTION 2. See the results of the profiles you've looked
     def results
       x = Profile.all.select { |profile| profile.user_id == self.id }
       k = x.map {|profile| profile[:name]}

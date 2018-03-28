@@ -17,11 +17,10 @@ def run
         if option == '1'
           run2(name)
         elsif option == '2'
-          name.profiles.each do |profile|
-            puts "#{profile.name} + #{profile.sentiment}"
-          end
+          name.results
         elsif option == '3'
-          sentiment_counts
+          binding.pry
+          name.sentiments_counts
         elsif option == '4'
           User.num_of_profiles
         elsif option == '5'
