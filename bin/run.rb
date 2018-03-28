@@ -18,34 +18,41 @@ def run
           run2(name)
         elsif option == '2'
           if name.results.empty?()
-            puts "    You have not analyzed any profiles!"
+            puts "
+    You have not analyzed any profiles!".red
             sleep(2)
           else
-            name.results.map {|key, value| puts "   #{key} - #{value}"}
+            name.results.map do |key, value|
+              print "   #{key} - "
+              puts "#{value}".yellow
+            end
             sleep(2)
           end
         elsif option == '3'
           if name.results.empty?()
-            puts "    You have not analyzed any profiles!"
+            puts "
+    You have not analyzed any profiles!".red
             sleep(2)
           else
             hash = name.results.values.each_with_object(Hash.new(0)) { |result,counts| counts[result] += 1 }
-            hash.map {|key, value| puts "   #{key} - #{value}"}
+            hash.map {|key, value| puts "   #{key} - #{value}".yellow}
             sleep(2)
           end
         elsif option == '4'
           Profile.all.delete_all
-          puts "    History cleared!"
+          puts "
+    History cleared!".cyan
           sleep(2)
         else
           puts "
-          That's not a valid command. Please try again."
+    That's not a valid command. Please try again.".red
           sleep(2)
         end
       option = helper
   end
   puts "
-  Session ended."
+   *** Session ended ***
+".colorize(:color => :white, :background => :red)
 end
 
 def run2(name)
@@ -55,20 +62,21 @@ def run2(name)
   if captions == false
   elsif captions == nil
     puts "
-    This user is private. Sorry!"
+    This user is private. Sorry!".red
     sleep(2)
   else
     sentiment = get_sentiment(captions).to_s
     if sentiment == nil
       puts "
-      This user doesn't like captions. Sorry!"
+      This user doesn't like captions. Sorry!".red
       sleep(2)
     else
       profile_instance.sentiment_id(sentiment)
       profile_instance.save
     end
-    puts "
-    #{profile}'s sentiment is: #{sentiment.capitalize}"
+    print "
+    #{profile}'s sentiment is: "
+    print "#{sentiment.capitalize}".yellow
     sleep(3)
   end
 end

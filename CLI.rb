@@ -2,19 +2,20 @@
 
 
 def welcome
-  puts "*** Welcome to the Instagram Sentiment Assessor! ***".yellow
+  puts "
+          ****  Welcome to the Instagram Sentiment Assessor!  ****        ".colorize(:color => :white, :background => :red)
 end
 
 def get_username
   print "
-  Please enter your first name: ".green
+  Please enter your first name: ".cyan
   response = gets.chomp
   User.create(username:response)
 end
 
 def get_profile
   print "
-  Enter the username of a public profile you'd like to analyze the sentiment of: ".green
+  Enter the username of a public profile you'd like to analyze the sentiment of: ".cyan
   gets.chomp
 end
 
@@ -42,6 +43,6 @@ def helper
   #     6. See the breakdown of sentiments of all the profiles
 
   print "
-  Please enter the number of your choice from the options above (1 - 5): ".green
+  Please enter the number of your choice from the options above (1 - 5): ".cyan
   gets.chomp
 end

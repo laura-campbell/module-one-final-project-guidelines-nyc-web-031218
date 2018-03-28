@@ -12,7 +12,7 @@ def get_profiles_from_input(profile)
   profile_output = RestClient.get("https://www.instagram.com/#{profile}/?__a=1")
   rescue
     puts "
-    That's not a valid username. Try again!"
+    That's not a valid username. Try again!".red
     sleep(2)
     profile_output = false
   end
