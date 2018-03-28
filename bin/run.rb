@@ -36,7 +36,8 @@ def run2(name)
   profile = get_profile
   profile_instance = name.add_profile(profile)
   captions = get_profiles_from_input(profile)
-  if captions == nil
+  if captions == false
+  elsif captions == nil
     puts "
     This user is private. Sorry!"
   else
