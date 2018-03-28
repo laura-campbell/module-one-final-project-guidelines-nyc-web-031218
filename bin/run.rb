@@ -17,24 +17,35 @@ def run
         if option == '1'
           run2(name)
         elsif option == '2'
-          name.results.map {|key, value| puts "#{key} - #{value}"}
+          if name.results.empty?()
+            puts "    You have not analyzed any profiles!"
+            sleep(2)
+          else
+            name.results.map {|key, value| puts "   #{key} - #{value}"}
+            sleep(2)
+          end
         elsif option == '3'
-<<<<<<< HEAD
-          #binding.pry
-          name.sentiments_counts
-=======
-          hash = name.results.values.each_with_object(Hash.new(0)) { |result,counts| counts[result] += 1 }
-          puts hash
->>>>>>> b7c1142a6e35b7ffc015639d955712791201b0bd
+          if name.results.empty?()
+            puts "    You have not analyzed any profiles!"
+            sleep(2)
+          else
+            hash = name.results.values.each_with_object(Hash.new(0)) { |result,counts| counts[result] += 1 }
+            hash.map {|key, value| puts "   #{key} - #{value}"}
+            sleep(2)
+          end
         elsif option == '4'
           Profile.all.delete_all
-          puts "History cleared!"
+          puts "    History cleared!"
+          sleep(2)
         else
-          puts "That's not a valid command. Please try again."
+          puts "
+          That's not a valid command. Please try again."
+          sleep(2)
         end
       option = helper
   end
-  puts "Session ended."
+  puts "
+  Session ended."
 end
 
 def run2(name)
@@ -44,17 +55,20 @@ def run2(name)
   if captions == nil
     puts "
     This user is private. Sorry!"
+    sleep(2)
   else
     sentiment = get_sentiment(captions).to_s
     if sentiment == nil
       puts "
       This user doesn't like captions. Sorry!"
+      sleep(2)
     else
       profile_instance.sentiment_id(sentiment)
       profile_instance.save
     end
     puts "
     #{profile}'s sentiment is: #{sentiment.capitalize}"
+    sleep(3)
   end
 end
 

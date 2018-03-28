@@ -9,6 +9,7 @@ require 'sentimental'
 
 def get_profiles_from_input(profile)
   profile_output = RestClient.get("https://www.instagram.com/#{profile}/?__a=1")
+
   profile_hash = JSON.parse(profile_output)
   if profile_hash['graphql']['user']['is_private'] == false
       caption_array= []
