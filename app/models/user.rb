@@ -58,10 +58,11 @@ class User < ActiveRecord::Base
       elsif profile[:sentiment_id] == 3
         "Neutral"
       end
+      hash = [k, v].transpose.to_h
     end
     hash = [k, v].transpose.to_h
     hash.map {|key, value| puts "#{key} - #{value}"}
-    hash 
+    hash
   end
 
 

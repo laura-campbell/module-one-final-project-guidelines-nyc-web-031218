@@ -27,14 +27,16 @@ def helper
   ANALYZE YOUR RESULTS:
       2. See the results of the profiles you've looked at
       3. See the breakdown of sentiments from the profiles you've looked at
-  ANALYZE ALL RESULTS:
-      4. See the number of profiles all users have looked at
-      5. See the results of all the profiles looked at by all users
-      6. See the breakdown of sentiments of all the profiles
   QUIT:
-      7. Clear history
-      8. Exit the application
+      4. Clear history
+      5. Exit the application
   "
+
+  # ANALYZE ALL RESULTS:
+  #     4. See the number of profiles all users have looked at
+  #     5. See the results of all the profiles looked at by all users
+  #     6. See the breakdown of sentiments of all the profiles
+
   print "Please enter the number of your choice from the options above: "
   gets.chomp
 end
