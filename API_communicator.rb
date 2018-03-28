@@ -8,7 +8,9 @@ require 'sentimental'
 
 
 def get_profiles_from_input(profile)
+  begin
   profile_output = RestClient.get("https://www.instagram.com/#{profile}/?__a=1")
+<<<<<<< HEAD
 
   profile_hash = JSON.parse(profile_output)
   if profile_hash['graphql']['user']['is_private'] == false
@@ -16,9 +18,25 @@ def get_profiles_from_input(profile)
       profile_hash['graphql']['user']['edge_owner_to_timeline_media']['edges'].each do |t|
         if t['node']['edge_media_to_caption']['edges'][0] != nil
           caption_array << t['node']['edge_media_to_caption']['edges'][0]['node']['text']
+=======
+  rescue
+    puts "That's not a valid username. Try again!"
+    profile_output = false
+  end
+  if profile_output
+    profile_hash = JSON.parse(profile_output)
+    if profile_hash['graphql']['user']['is_private'] == false
+        caption_array= []
+        profile_hash['graphql']['user']['edge_owner_to_timeline_media']['edges'].each do |t|
+          if t['node']['edge_media_to_caption']['edges'][0] != nil
+            caption_array << t['node']['edge_media_to_caption']['edges'][0]['node']['text']
+          end
+>>>>>>> 10731cff8ace44599d173450f9b62d43c744d595
         end
+        caption_array
       end
-      caption_array
+    else
+      false
     end
 end
 
