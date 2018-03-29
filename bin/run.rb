@@ -76,8 +76,17 @@ def run2(name)
     end
     print "
     #{profile}'s sentiment is: "
-    print "#{sentiment.capitalize}".yellow
-    sleep(3)
+    print "#{sentiment.capitalize}".green
+    sleep(1)
+    print "
+
+    Captions used for analysis: ".blue
+    captions.each_with_index do |caption, index|
+      print "
+
+      #{index + 1}. #{caption}".yellow
+    end
+    sleep(2)
   end
 end
 
