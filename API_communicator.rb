@@ -40,3 +40,9 @@ def get_sentiment(captions)
   end
   x.max_by { |i| x.count(i) }
 end
+
+def caption_sentiment(caption)
+  analyzer = Sentimental.new
+  analyzer.load_defaults
+  analyzer.sentiment caption
+end

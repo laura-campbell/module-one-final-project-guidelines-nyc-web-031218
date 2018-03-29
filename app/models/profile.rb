@@ -29,5 +29,11 @@ class Profile < ActiveRecord::Base
     hash.map {|key, value| puts "#{key} - #{value}"}
   end
 
+  def full_name
+    profile_output = RestClient.get("https://www.instagram.com/#{self.name}/?__a=1")
+    profile_hash = JSON.parse(profile_output)
+    profile_hash['graphql']['user']['full_name']
+  end
+
 
 end

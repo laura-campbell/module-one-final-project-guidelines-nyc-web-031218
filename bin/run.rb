@@ -74,17 +74,19 @@ def run2(name)
       profile_instance.sentiment_id(sentiment)
       profile_instance.save
     end
-    print "
-    #{profile}'s sentiment is: "
+  name = profile_instance.full_name
+print "
+#{name}'s sentiment is: "
     print "#{sentiment.capitalize}".green
+    system "say #{name}s sentiment is #{sentiment}"
     sleep(1)
-    print "
+print "
 
-    Captions used for analysis: ".blue
+Most recent captions: ".blue
     captions.each_with_index do |caption, index|
-      print "
+print "
 
-      #{index + 1}. #{caption}".yellow
+#{index + 1}. #{caption}".magenta + "  --- (#{caption_sentiment(caption)})".green
     end
     sleep(2)
   end
